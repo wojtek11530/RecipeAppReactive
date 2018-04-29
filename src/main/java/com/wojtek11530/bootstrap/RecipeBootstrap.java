@@ -4,7 +4,11 @@ import com.wojtek11530.domain.*;
 import com.wojtek11530.repositories.CategoryRepository;
 import com.wojtek11530.repositories.RecipeRepository;
 import com.wojtek11530.repositories.UnitOfMeasureRepository;
+import com.wojtek11530.repositories.reactive.CategoryReactiveRepository;
+import com.wojtek11530.repositories.reactive.RecipeReactiveRepository;
+import com.wojtek11530.repositories.reactive.UnitOfMeasureReactiveRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -26,11 +30,20 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
     private final RecipeRepository recipeRepository;
     private final UnitOfMeasureRepository unitOfMeasureRepository;
 
+/*    @Autowired
+    UnitOfMeasureReactiveRepository unitOfMeasureReactiveRepository;
+    @Autowired
+    CategoryReactiveRepository categoryReactiveRepository;
+    @Autowired
+    RecipeReactiveRepository recipeReactiveRepository;*/
+
     public RecipeBootstrap(CategoryRepository categoryRepository,
                            RecipeRepository recipeRepository, UnitOfMeasureRepository unitOfMeasureRepository) {
         this.categoryRepository = categoryRepository;
         this.recipeRepository = recipeRepository;
         this.unitOfMeasureRepository = unitOfMeasureRepository;
+
+
     }
 
     @Override
@@ -40,6 +53,11 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         loadUom();
         recipeRepository.saveAll(getRecipes());
         log.debug("Loading Bootstrap Data");
+
+        /*log.error("#######");
+        log.error("UOM Count: " + unitOfMeasureReactiveRepository.count().block().toString());
+        log.error("Recipe Count: " + recipeReactiveRepository.count().block().toString());
+        log.error("Category Count: " + categoryReactiveRepository.count().block().toString());*/
     }
 
     private void loadCategories(){

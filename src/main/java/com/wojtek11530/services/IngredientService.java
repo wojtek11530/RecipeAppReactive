@@ -1,6 +1,7 @@
 package com.wojtek11530.services;
 
 import com.wojtek11530.commands.IngredientCommand;
+import reactor.core.publisher.Mono;
 
 
 /**
@@ -8,9 +9,9 @@ import com.wojtek11530.commands.IngredientCommand;
  */
 public interface IngredientService {
 
-    IngredientCommand findByRecipeIdAndIngredientId(String recipeId, String ingredientId);
+    Mono<IngredientCommand> findByRecipeIdAndIngredientId(String recipeId, String ingredientId);
 
-    IngredientCommand saveIngredientCommand(IngredientCommand command);
+    Mono<IngredientCommand> saveIngredientCommand(IngredientCommand command);
 
-    void deleteById(String recipeId, String idToDelete);
+    Mono<Void> deleteById(String recipeId, String idToDelete);
 }
