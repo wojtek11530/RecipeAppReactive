@@ -8,6 +8,7 @@ import com.wojtek11530.services.IngredientService;
 import com.wojtek11530.services.RecipeService;
 import com.wojtek11530.services.UnitOfMeasureService;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -24,7 +25,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
+@Ignore
 public class IngredientControllerTest {
 
     @Mock
